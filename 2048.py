@@ -30,7 +30,7 @@ while(True):
 
 	# the above process will be followed
 	# in case of each type of move
-	# below
+	# belowwww
 
 	# to move down
 	elif(x == 'S' or x == 's'):
