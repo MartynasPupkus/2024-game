@@ -96,7 +96,7 @@ while(True):
 			else:
 				break
 	elif event == "-RIGHT-":
-		# to move right
+		# to  move right
 		mat, flag = logic.move_right(mat)
 		status = logic.get_current_state(mat)
 		print(status)
