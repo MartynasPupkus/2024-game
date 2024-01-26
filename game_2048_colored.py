@@ -13,10 +13,10 @@ VALUE_COLOR_MAP = {
     256: "brown",
     512: "cyan",
     1024: "magenta",
-    2048: "black",
+    2048: "white",
 }
 
-def main_window(user_theme, mat):
+def main_window(user_theme):
     sg.theme(user_theme)
     buttons = [[sg.Button('', size=(5, 2), pad=(5, 5), key=(i, j), font="Any 15") for j in range(4)] for i in range(4)]
 
@@ -35,14 +35,14 @@ def main_window(user_theme, mat):
 
     window = sg.Window("2048", layout)
 
-    return window, buttons
+    return window
 
-def update_buttons(window, buttons, mat):
+def update_buttons(window, mat):
     for i in range(4):
         for j in range(4):
             button_key = (i, j)
             value = mat[i][j]
-            button_color = VALUE_COLOR_MAP.get(value, "white")
+            button_color = VALUE_COLOR_MAP.get(value, "grey")
             window[button_key].update(value if value != 0 else '', button_color=button_color)
 
 def display_game_over(window):
@@ -51,7 +51,7 @@ def display_game_over(window):
 if __name__ == '__main__':
     mat = start_game()
     user_theme = "DarkAmber"
-    window, buttons = main_window(user_theme, mat)
+    window = main_window(user_theme)
 
     while True:
         event, values = window.read()
@@ -72,7 +72,7 @@ if __name__ == '__main__':
         elif event == "New Game":
             mat = start_game()
             window["-GAMEOVER-"].update("")
-        update_buttons(window, buttons, mat)
+        update_buttons(window, mat)
 
         if get_current_state(mat) == 'LOST':
             display_game_over(window)
